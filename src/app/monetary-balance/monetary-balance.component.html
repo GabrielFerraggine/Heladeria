@@ -1,0 +1,33 @@
+
+<p class="text-lg mb-4">
+  <strong>Total:</strong>
+  <span [ngClass]="{'text-green': totalBalance >= 0, 'text-red': totalBalance < 0}">
+    {{ totalBalance | currency:'ARS' }}
+  </span>
+</p>
+
+@for (ice of iceCreams; track ice.id) {
+  <div class="border p-2 rounded mb-2 shadow-sm">
+    <p><strong>{{ ice.name }}</strong></p>
+    <p>
+      Cantidad:
+      <span [ngClass]="{
+        'text-red': ice.weightQuantity === 0,
+        'text-green': ice.weightQuantity > 0
+      }">
+        {{ ice.weightQuantity }}
+      </span><br>
+
+      Precio costo: {{ ice.price_cost | currency:'ARS' }}<br>
+      Precio venta: {{ ice.price_sale | currency:'ARS' }}<br>
+
+      Balance:
+      <span [ngClass]="{
+        'text-green': (ice.price_sale - ice.price_cost) * ice.weightQuantity >= 0,
+        'text-red': (ice.price_sale - ice.price_cost) * ice.weightQuantity < 0
+      }">
+        {{ (ice.price_sale - ice.price_cost) * ice.weightQuantity | currency:'ARS' }}
+      </span>
+    </p>
+  </div>
+}

@@ -1,0 +1,48 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Weight stock</th>
+            <th>Price cost</th>
+            <th>Price sale</th>
+            <th>illustrative_image</th>
+            <th>Trading</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(i of ice_cream; track i.name) {
+             <tr>
+                <td>{{i.name}}</td>
+                @if(i.weightStock>0) {
+                    <td>{{i.weightStock}}</td>
+                } @else {
+                    <td><span class="badge bg-warning text-dark">Sin Stock</span></td>
+                } 
+                <td>{{i.price_cost | currency}}</td>
+                <td>{{i.price_sale | currency}}</td>
+                <td>
+                    <img class="img-thumbnail" width="100"
+                    [src]="i.illustrative_image" [alt]="i.name"></td>
+                <td>
+                    <app-input-integer  
+                        [(actualQuantity)]="i.weightQuantity" 
+                        [maxQuantity]="i.weightStock" 
+                        [allowNegative]="true">
+                    </app-input-integer>
+                </td>
+                <td>
+                    <div class="container text-center">
+                        <div class="row align-items-start">
+                            <div class="col">
+                            <button class="btn btn-primary" (click)="addToManager(i)">Add Balance</button>
+                            </div>
+                            <div class="col">
+                            <button class="btn btn-danger" (click)="discontinueIceCream(i.id)">Discontinue</button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    

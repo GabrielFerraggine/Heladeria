@@ -1,59 +1,69 @@
-# Heladeria
+# 🍨 Ice Cream Stock Manager
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+Una aplicación web para gestionar el inventario de helados en tiempo real. Permite controlar el stock en kilos, reflejar ingresos y ventas, y calcular automáticamente el balance económico de cada operación.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🧩 Características Principales
 
-```bash
-ng serve
-```
+### 1. Interfaz
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### 📋 Lista Principal de Helados (`ice-cream-list`)
 
-## Code scaffolding
+Cada producto muestra:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **🧊 Name**: Nombre del helado.
+- **⚖️ Weight Stock**: Kilos disponibles actualmente.
+- **💰 Price Cost**: Costo del proveedor por kilo.
+- **💵 Price Sale**: Precio de venta por kilo.
+- **🖼️ Imagen**: Imagen ilustrativa del helado.
+- **🔢 Control de cantidad**: Input con botones para modificar stock (positivo para compras, negativo para ventas).
+- **➕ Add Balance**: Agrega el producto modificado a la operación actual.
+- **❌ Discontinue**: Elimina el helado de la vista y de la base de datos.
 
-```bash
-ng generate component component-name
-```
+#### 📊 Balance Económico (`monetary-balance`)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **📦 Lista de productos añadidos**: Cada producto ingresado o vendido se agrega aquí.
+- **🧮 Total**: Muestra el balance total de la operación actual.
+- **✅ Update Stock**: Aplica los cambios al inventario y actualiza la base de datos.
 
-```bash
-ng generate --help
-```
+#### ℹ️ Sección About
 
-## Building
+- Breve descripción de la empresa desarrolladora.
+- Información de contacto: dirección física y correo electrónico.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🧱 Estructura de Componentes
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+| Componente             | Función                                                              |
+|------------------------|----------------------------------------------------------------------|
+| `about`                | Contiene la sección informativa de la empresa.                      |
+| `ice-cream-list`       | Interfaz principal de interacción con los productos.                |
+| `ice-cream-main-page`  | Página principal que agrupa la lista y el balance.                  |
+| `input-integer`        | Permite modificar cantidades con botones de suma y resta.           |
+| `monetary-balance`     | Calcula y actualiza el balance de la operación actual.              |
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🔧 Servicios
 
-```bash
-ng test
-```
+| Servicio              | Función                                                                  |
+|------------------------|--------------------------------------------------------------------------|
+| `ice-cream-data`       | Comunicación con la API (`GET`, `GET by ID`, `PATCH`, `DELETE`).         |
+| `stock-manager`        | Lógica para mantener la lista interna del balance.                       |
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## ⚙️ Comportamiento Esperado
 
-```bash
-ng e2e
-```
+- ✅ **Actualización de Stock**: Solo se permite modificar el stock dentro de los límites reales (no se puede bajar de 0).
+- 🔁 **Reset al cambiar de pestaña**: Al cambiar a la pestaña `About`, se reinicia la operación en curso.
+- 🗑️ **Discontinue**: Elimina permanentemente un helado del sistema.
+- 🧾 **Balance en Tiempo Real**: Cada operación suma o resta según compra (gasto) o venta (ingreso).
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📸 Vista Esperada
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Uso Esperado](img/uso_esperado.png)
