@@ -66,4 +66,4 @@ Cada producto muestra:
 
 ## 📸 Vista Esperada
 
-![Uso Esperado](img/uso_esperado.png)
+![Uso Esperado](src/img/uso_esperado.png)
